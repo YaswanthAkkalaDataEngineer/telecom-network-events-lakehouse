@@ -1,0 +1,1 @@
+event_id,event_time,tower_id,event_type,severity,latency_ms,packet_loss_pct,signal_strength_dbm,utilization_pct,availability_pct,region

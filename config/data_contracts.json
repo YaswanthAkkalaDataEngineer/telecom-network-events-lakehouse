@@ -1,0 +1,224 @@
+{
+  "cdr": {
+    "path": "data/raw/cdr/cdr.csv",
+    "primary_key": "cdr_id",
+    "columns": {
+      "cdr_id": {
+        "required": true
+      },
+      "subscriber_id": {
+        "required": true
+      },
+      "call_start_time": {
+        "required": true
+      },
+      "call_end_time": {
+        "required": true
+      },
+      "duration_seconds": {
+        "required": true
+      },
+      "source_tower_id": {
+        "required": true
+      },
+      "destination_tower_id": {
+        "required": true
+      },
+      "call_type": {
+        "required": true
+      },
+      "call_status": {
+        "required": true
+      },
+      "roaming_flag": {
+        "required": true
+      },
+      "network_type": {
+        "required": true
+      },
+      "signal_strength_dbm": {
+        "required": true
+      },
+      "latency_ms": {
+        "required": true
+      },
+      "region": {
+        "required": true
+      }
+    }
+  },
+  "network_events": {
+    "path": "data/raw/network_events/network_events.csv",
+    "primary_key": "event_id",
+    "columns": {
+      "event_id": {
+        "required": true
+      },
+      "event_time": {
+        "required": true
+      },
+      "tower_id": {
+        "required": true
+      },
+      "event_type": {
+        "required": true
+      },
+      "severity": {
+        "required": true
+      },
+      "latency_ms": {
+        "required": true
+      },
+      "packet_loss_pct": {
+        "required": true
+      },
+      "signal_strength_dbm": {
+        "required": true
+      },
+      "utilization_pct": {
+        "required": true
+      },
+      "availability_pct": {
+        "required": true
+      },
+      "region": {
+        "required": true
+      }
+    }
+  },
+  "subscriber_activity": {
+    "path": "data/raw/subscriber_activity/subscriber_activity.csv",
+    "primary_key": "activity_id",
+    "columns": {
+      "activity_id": {
+        "required": true
+      },
+      "subscriber_id": {
+        "required": true
+      },
+      "activity_time": {
+        "required": true
+      },
+      "activity_type": {
+        "required": true
+      },
+      "data_usage_mb": {
+        "required": true
+      },
+      "device_type": {
+        "required": true
+      },
+      "network_type": {
+        "required": true
+      },
+      "roaming_flag": {
+        "required": true
+      },
+      "tower_id": {
+        "required": true
+      },
+      "region": {
+        "required": true
+      }
+    }
+  },
+  "cell_towers": {
+    "path": "data/raw/reference/cell_towers.csv",
+    "primary_key": "tower_id",
+    "columns": {
+      "tower_id": {
+        "required": true
+      },
+      "region": {
+        "required": true
+      },
+      "city": {
+        "required": true
+      },
+      "latitude": {
+        "required": true
+      },
+      "longitude": {
+        "required": true
+      },
+      "capacity_sessions": {
+        "required": true
+      },
+      "commissioned_date": {
+        "required": true
+      },
+      "technology": {
+        "required": true
+      },
+      "status": {
+        "required": true
+      }
+    }
+  },
+  "service_tickets": {
+    "path": "data/raw/operations/service_tickets.csv",
+    "primary_key": "ticket_id",
+    "columns": {
+      "ticket_id": {
+        "required": true
+      },
+      "subscriber_id": {
+        "required": true
+      },
+      "tower_id": {
+        "required": true
+      },
+      "opened_time": {
+        "required": true
+      },
+      "closed_time": {
+        "required": false
+      },
+      "ticket_type": {
+        "required": true
+      },
+      "priority": {
+        "required": true
+      },
+      "status": {
+        "required": true
+      },
+      "description": {
+        "required": false
+      },
+      "region": {
+        "required": true
+      }
+    }
+  },
+  "outages": {
+    "path": "data/raw/operations/outages.csv",
+    "primary_key": "outage_id",
+    "columns": {
+      "outage_id": {
+        "required": true
+      },
+      "tower_id": {
+        "required": true
+      },
+      "outage_start": {
+        "required": true
+      },
+      "outage_end": {
+        "required": true
+      },
+      "outage_type": {
+        "required": true
+      },
+      "root_cause": {
+        "required": true
+      },
+      "affected_subscribers": {
+        "required": true
+      },
+      "region": {
+        "required": true
+      }
+    }
+  }
+}

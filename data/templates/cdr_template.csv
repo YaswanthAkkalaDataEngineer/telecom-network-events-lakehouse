@@ -1,0 +1,1 @@
+cdr_id,subscriber_id,call_start_time,call_end_time,duration_seconds,source_tower_id,destination_tower_id,call_type,call_status,roaming_flag,network_type,signal_strength_dbm,latency_ms,region

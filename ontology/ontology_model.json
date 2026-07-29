@@ -1,0 +1,51 @@
+{
+  "objects": [
+    {
+      "name": "Subscriber",
+      "primaryKey": "subscriber_id"
+    },
+    {
+      "name": "CallEvent",
+      "primaryKey": "cdr_id"
+    },
+    {
+      "name": "CellTower",
+      "primaryKey": "tower_id"
+    },
+    {
+      "name": "NetworkEvent",
+      "primaryKey": "event_id"
+    },
+    {
+      "name": "ServiceTicket",
+      "primaryKey": "ticket_id"
+    },
+    {
+      "name": "Outage",
+      "primaryKey": "outage_id"
+    }
+  ],
+  "links": [
+    {
+      "from": "Subscriber",
+      "to": "CallEvent",
+      "key": "subscriber_id"
+    },
+    {
+      "from": "CellTower",
+      "to": "NetworkEvent",
+      "key": "tower_id"
+    },
+    {
+      "from": "CellTower",
+      "to": "Outage",
+      "key": "tower_id"
+    },
+    {
+      "from": "CellTower",
+      "to": "ServiceTicket",
+      "key": "tower_id"
+    }
+  ],
+  "note": "Conceptual portfolio model using synthetic data only."
+}
