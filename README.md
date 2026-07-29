@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="docs/images/telecom-lakehouse-banner.png"
+       alt="Telecom Network Intelligence Lakehouse"
+       width="100%">
+</p>
+
 # Telecom Network Intelligence Lakehouse Prototype
 
 Portfolio project using **synthetic data only**. It demonstrates CDR processing, network-event analytics, data quality, Bronze/Silver/Gold design, conceptual ontology modeling, and a TypeScript incident workflow.
