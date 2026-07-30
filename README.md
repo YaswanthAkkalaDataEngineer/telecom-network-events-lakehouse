@@ -19,13 +19,58 @@ Portfolio project using **synthetic data only**. It demonstrates CDR processing,
 
 ## Run
 
+## Run the Project
+
+This prototype simulates a telecom network intelligence pipeline using synthetic data.  
+It validates raw input files, transforms them into curated datasets, and generates KPI outputs for analysis.
+
+### What this project does
+
+The pipeline performs the following:
+
+- Reads synthetic telecom datasets such as:
+  - Call Detail Records (CDRs)
+  - Network Events
+  - Subscriber Activity
+  - Cell Towers
+  - Service Tickets
+  - Outages
+- Validates schema and required fields
+- Removes duplicate records
+- Standardizes timestamps and key attributes
+- Builds Silver datasets for validated data
+- Generates Gold KPI datasets for:
+  - Call drop rate
+  - Average latency
+  - Signal quality
+  - Tower utilization
+  - Availability
+  - Ticket summaries
+  - Outage summaries
+
+---
+
+### Prerequisites
+
+Make sure the following are installed on your machine:
+
+- Python 3.10 or above
+- pip
+- (Optional) virtual environment support
+- (Optional) Java if you want to run the PySpark version
+
+---
+
+### Setup Instructions
+
+#### 1. Create a virtual environment
+
 ```bash
 python -m venv .venv
+
 .venv\Scripts\activate
+source .venv/bin/activate
 pip install -r requirements.txt
-python src/validate_input_data.py
-python src/local_pipeline.py
-```
 
 ## Architecture
 
