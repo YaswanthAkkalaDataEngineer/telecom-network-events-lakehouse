@@ -58,36 +58,83 @@ Make sure the following are installed on your machine:
 - (Optional) Java if you want to run the PySpark version
 
 ---
-
 ### Setup Instructions
+
+#### 1. Create a virtual environment
 
 #### 1. Create a virtual environment
 
 ```bash
 python -m venv .venv
+```
 
+#### 2. Activate the virtual environment
+
+**Windows**
+
+```bash
 .venv\Scripts\activate
+```
 
+**Mac / Linux**
+
+```bash
 source .venv/bin/activate
+```
 
+#### 3. Install required dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
+#### 4. Validate the source data
+
+```bash
 python src/validate_input_data.py
+```
 
+#### 5. Run the local Python pipeline
+
+```bash
 python src/local_pipeline.py
+```
 
+#### 6. Run the PySpark pipeline
+
+```bash
 python src/pyspark_pipeline.py
+```
 
+#### 7. Review the generated outputs
+
+```text
 data/processed/gold/
+```
 
+Main output files:
+
+```text
+daily_tower_kpis.csv
+ticket_summary.csv
+outage_summary.csv
+```
+
+#### 8. Replace the source data
+
+```bash
 python src/replace_data.py --source "path/to/new_data"
+```
 
+#### 9. Run automated tests
+
+```bash
 pytest -q
+```
 
+---
 
 ## Architecture
-
-```md
 ## Architecture
 
 This project follows a **Bronze / Silver / Gold lakehouse pattern** for telecom data engineering.
