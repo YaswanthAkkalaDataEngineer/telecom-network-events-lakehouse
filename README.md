@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/telecom-lakehouse-banner.png"
+  <img src="docs/telecom-lakehouse-banner.png"
        alt="Telecom Network Intelligence Lakehouse"
        width="100%">
 </p>
