@@ -17,8 +17,6 @@ Portfolio project using **synthetic data only**. It demonstrates CDR processing,
 - `data/raw/operations/service_tickets.csv`
 - `data/raw/operations/outages.csv`
 
-## Run
-
 ## Run the Project
 
 This prototype simulates a telecom network intelligence pipeline using synthetic data.  
