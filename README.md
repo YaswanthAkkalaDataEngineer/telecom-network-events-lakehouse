@@ -62,8 +62,6 @@ Make sure the following are installed on your machine:
 
 #### 1. Create a virtual environment
 
-#### 1. Create a virtual environment
-
 ```bash
 python -m venv .venv
 ```
@@ -134,55 +132,114 @@ pytest -q
 
 ---
 
-## Architecture
+
 ## Architecture
 
 This project follows a **Bronze / Silver / Gold lakehouse pattern** for telecom data engineering.
 
 ```mermaid
-flowchart LR
-    subgraph A[Data Sources]
-        A1[Call Detail Records]
-        A2[Network Events]
-        A3[Subscriber Activity]
-        A4[Cell Tower Reference]
-        A5[Service Tickets]
-        A6[Outages]
+flowchart TB
+
+    subgraph SOURCES["1. Telecom Data Sources"]
+        direction LR
+        A1["📞 Call Detail Records"]
+        A2["📡 Network Events"]
+        A3["👥 Subscriber Activity"]
+        A4["🗼 Cell Tower Reference"]
+        A5["🎫 Service Tickets"]
+        A6["⚠️ Outages"]
     end
 
-    subgraph B[Bronze Layer - Raw Ingestion]
-        B1[Raw Landing Data]
-        B2[Source Preservation]
-        B3[Schema-on-Read]
+    subgraph BRONZE["2. Bronze Layer — Raw Ingestion"]
+        direction LR
+        B1["Raw File Landing"]
+        B2["Source Preservation"]
+        B3["Schema-on-Read"]
+        B4["Ingestion Metadata"]
     end
 
-    subgraph C[Silver Layer - Validation and Standardization]
-        C1[Schema Validation]
-        C2[Deduplication]
-        C3[Quality Checks]
-        C4[Timestamp Standardization]
-        C5[Enrichment and Joins]
+    subgraph SILVER["3. Silver Layer — Validated and Standardized"]
+        direction LR
+        C1["Schema Validation"]
+        C2["Deduplication"]
+        C3["Timestamp Standardization"]
+        C4["Data Quality Rules"]
+        C5["Enrichment and Joins"]
     end
 
-    subgraph D[Gold Layer - Curated Analytics]
-        D1[Daily Tower KPIs]
-        D2[Call Drop Rate]
-        D3[Latency and Signal Quality]
-        D4[Utilization and Availability]
-        D5[Ticket and Outage Summaries]
+    subgraph GOLD["4. Gold Layer — Curated Telecom Analytics"]
+        direction LR
+        D1["Daily Tower KPIs"]
+        D2["Call Drop Rate"]
+        D3["Latency and Signal Quality"]
+        D4["Utilization and Availability"]
+        D5["Ticket and Outage Summary"]
     end
 
-    subgraph E[Consumption and Business Use]
-        E1[Dashboards]
-        E2[Ad-hoc Analysis]
-        E3[Operational Workflows]
-        E4[AI Assisted Triage]
+    subgraph CONSUMPTION["5. Analytics and Operational Consumption"]
+        direction LR
+        E1["📊 Dashboards"]
+        E2["🔎 Ad-hoc Analysis"]
+        E3["⚙️ Operational Workflows"]
+        E4["🤖 AI-Assisted Incident Triage"]
+        E5["🔔 Reports and Alerts"]
     end
 
-    A --> B
-    B --> C
-    C --> D
-    D --> E
+    SOURCES --> BRONZE
+    BRONZE --> SILVER
+    SILVER --> GOLD
+    GOLD --> CONSUMPTION
+
+    classDef source fill:#EAF2FF,stroke:#2563EB,stroke-width:2px,color:#102A43
+    classDef bronze fill:#FFF4E5,stroke:#D97706,stroke-width:2px,color:#5C2D00
+    classDef silver fill:#F1F5F9,stroke:#64748B,stroke-width:2px,color:#1E293B
+    classDef gold fill:#FFF9DB,stroke:#CA8A04,stroke-width:2px,color:#4A3600
+    classDef consume fill:#ECFDF5,stroke:#059669,stroke-width:2px,color:#064E3B
+
+    class A1,A2,A3,A4,A5,A6 source
+    class B1,B2,B3,B4 bronze
+    class C1,C2,C3,C4,C5 silver
+    class D1,D2,D3,D4,D5 gold
+    class E1,E2,E3,E4,E5 consume
+
+    style SOURCES fill:#F8FBFF,stroke:#2563EB,stroke-width:2px
+    style BRONZE fill:#FFFBF4,stroke:#D97706,stroke-width:2px
+    style SILVER fill:#F8FAFC,stroke:#64748B,stroke-width:2px
+    style GOLD fill:#FFFDF2,stroke:#CA8A04,stroke-width:2px
+    style CONSUMPTION fill:#F3FCF8,stroke:#059669,stroke-width:2px
+```
+
+### End-to-End Data Flow
+
+1. Synthetic telecom data is ingested from CDR, network-event, subscriber, tower, ticket and outage files.
+2. The Bronze layer preserves the source records and ingestion metadata.
+3. The Silver layer validates schemas, removes duplicates, standardizes timestamps and applies quality rules.
+4. The Gold layer produces business-ready KPIs for tower performance, call quality, congestion, tickets and outages.
+5. Curated outputs support dashboards, operational investigation, alerting and AI-assisted incident triage.
+
+### Architecture Layers
+
+| Layer | Purpose | Main Outputs |
+|---|---|---|
+| **Data Sources** | Synthetic telecom source datasets | CDRs, network events, subscriber activity, towers, tickets and outages |
+| **Bronze** | Preserves source data in its original structure | Raw files under `data/raw/` |
+| **Silver** | Validates, cleans, standardizes and enriches records | Validated telecom datasets |
+| **Gold** | Creates business-ready aggregations and KPIs | Tower KPIs, ticket summaries and outage summaries |
+| **Consumption** | Supports analytics and operational use cases | Dashboards, investigations, alerts and AI-assisted triage |
+
+### Business Use Cases
+
+- Call-drop analysis
+- Network latency monitoring
+- Signal-quality analysis
+- Tower congestion detection
+- Service-availability reporting
+- Capacity planning
+- Outage impact analysis
+- Operational issue tracking
+- AI-assisted incident triage
+
+---
 
 ## Interview explanation
 
