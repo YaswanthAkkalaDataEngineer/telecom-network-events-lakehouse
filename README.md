@@ -67,23 +67,75 @@ Make sure the following are installed on your machine:
 python -m venv .venv
 
 .venv\Scripts\activate
+
 source .venv/bin/activate
+
 pip install -r requirements.txt
+
+python src/validate_input_data.py
+
+python src/local_pipeline.py
+
+python src/pyspark_pipeline.py
+
+data/processed/gold/
+
+python src/replace_data.py --source "path/to/new_data"
+
+pytest -q
+
 
 ## Architecture
 
+```md
+## Architecture
+
+This project follows a **Bronze / Silver / Gold lakehouse pattern** for telecom data engineering.
+
 ```mermaid
 flowchart LR
- A[CDRs] --> B[Raw]
- C[Network Events] --> B
- D[Subscriber Activity] --> B
- E[Tickets and Outages] --> B
- F[Cell Towers] --> B
- B --> G[Validation / Silver]
- G --> H[Tower KPIs / Gold]
- G --> I[Conceptual Ontology]
- H --> J[Dashboards and Operational Workflows]
-```
+    subgraph A[Data Sources]
+        A1[Call Detail Records]
+        A2[Network Events]
+        A3[Subscriber Activity]
+        A4[Cell Tower Reference]
+        A5[Service Tickets]
+        A6[Outages]
+    end
+
+    subgraph B[Bronze Layer - Raw Ingestion]
+        B1[Raw Landing Data]
+        B2[Source Preservation]
+        B3[Schema-on-Read]
+    end
+
+    subgraph C[Silver Layer - Validation and Standardization]
+        C1[Schema Validation]
+        C2[Deduplication]
+        C3[Quality Checks]
+        C4[Timestamp Standardization]
+        C5[Enrichment and Joins]
+    end
+
+    subgraph D[Gold Layer - Curated Analytics]
+        D1[Daily Tower KPIs]
+        D2[Call Drop Rate]
+        D3[Latency and Signal Quality]
+        D4[Utilization and Availability]
+        D5[Ticket and Outage Summaries]
+    end
+
+    subgraph E[Consumption and Business Use]
+        E1[Dashboards]
+        E2[Ad-hoc Analysis]
+        E3[Operational Workflows]
+        E4[AI Assisted Triage]
+    end
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
 
 ## Interview explanation
 
