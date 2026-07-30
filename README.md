@@ -141,7 +141,7 @@ This project follows a **Bronze / Silver / Gold lakehouse pattern** for telecom 
 flowchart TB
 
     subgraph SOURCES["1. Telecom Data Sources"]
-        direction LR
+        
         A1["📞 Call Detail Records"]
         A2["📡 Network Events"]
         A3["👥 Subscriber Activity"]
@@ -151,7 +151,7 @@ flowchart TB
     end
 
     subgraph BRONZE["2. Bronze Layer — Raw Ingestion"]
-        direction LR
+        
         B1["Raw File Landing"]
         B2["Source Preservation"]
         B3["Schema-on-Read"]
@@ -159,7 +159,7 @@ flowchart TB
     end
 
     subgraph SILVER["3. Silver Layer — Validated and Standardized"]
-        direction LR
+        
         C1["Schema Validation"]
         C2["Deduplication"]
         C3["Timestamp Standardization"]
@@ -168,7 +168,7 @@ flowchart TB
     end
 
     subgraph GOLD["4. Gold Layer — Curated Telecom Analytics"]
-        direction LR
+        
         D1["Daily Tower KPIs"]
         D2["Call Drop Rate"]
         D3["Latency and Signal Quality"]
@@ -177,7 +177,7 @@ flowchart TB
     end
 
     subgraph CONSUMPTION["5. Analytics and Operational Consumption"]
-        direction LR
+       
         E1["📊 Dashboards"]
         E2["🔎 Ad-hoc Analysis"]
         E3["⚙️ Operational Workflows"]
@@ -244,5 +244,4 @@ flowchart TB
 ## Interview explanation
 
 I built a synthetic telecom network-intelligence lakehouse integrating CDRs, network events, subscriber activity, tower reference data, outages, and tickets. The validation layer enforces schemas and unique keys, while transformation logic generates call-drop, latency, signal-quality, utilization, availability, and congestion KPIs. I also modeled telecom business objects and a TypeScript incident-triage action.
-
-Do not describe this repository as original client production code. Describe it as a personal prototype based on common telecom engineering patterns.
+> **Portfolio disclaimer:** This is a personal prototype built with synthetic data and common telecom data-engineering patterns. It does not contain proprietary client code, production data, or confidential implementation details.
